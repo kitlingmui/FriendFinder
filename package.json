@@ -20,6 +20,7 @@
   "homepage": "https://github.com/kitlingmui/FriendFinder#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "init": "^0.1.2"
   }
 }

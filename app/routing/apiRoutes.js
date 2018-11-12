@@ -1,17 +1,18 @@
-// Get route with the url /api/friends 
-// post route to handing incoming survey result
+// LOAD DATA 
 
-const allfriends = require('../data/friends.js')
+var friend = require('../data/friends')
+
+// ROUTING
 
 module.exports = function (app) {
     // get all added friends survey
     app.get('/api/friends', (req, res) => {
-        res.json(allfriends.gettingfriend())
+        res.json(friend)
     })
 
-    // add a new friend survey
+    // add new friend in data table
     app.post('/api/friends', (req, res) => {
-        allfriends.push(req.body)
+        friend.push(req.body)
         res.sendStatus(200)
     })
 }

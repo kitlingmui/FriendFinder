@@ -1,14 +1,18 @@
-// Use of Using Fetch
+// My javascript 
 const fetch = window.fetch
 
-const addfriend = () => {
-    event.preventDefault
+// for Survey Page
+$(".submit-Btn").on("click", function(event) {
+    event.preventDefault();
+
+    // Fetch 1
     fetch('/api/friends', {
         method: 'POST', 
         headers:{'Content-Type': 'application/json; charset=utf-8'},
-        body: JSON.stringify({  name: document.querySelector('#name').value,
+        body: JSON.stringify({  
+                                name: document.querySelector('#name').value,
                                 photo: document.querySelector('#photolink').value,
-                                scores:[
+                                score:[
                                           document.querySelector('.custom-select-1').value,
                                           document.querySelector('.custom-select-2').value,
                                           document.querySelector('.custom-select-3').value,
@@ -35,14 +39,35 @@ const addfriend = () => {
         document.querySelector('.custom-select-7').value  = 0,
         document.querySelector('.custom-select-8').value  = 0,
         document.querySelector('.custom-select-9').value  = 0,
-        document.querySelector('.custom-select-10').value = 0   
+        document.querySelector('.custom-select-10').value = 0
+        window.location = './result'   
     })
     .catch(e => console.log(e))
-}
 
-fetch ('/api/friends')
-.then( r => r.json())
-//.then( r => console.log(r.json()))
-.catch(e => console.error(e))
+    // Fetch 2
+    fetch ('/api/friends')
+    .then( r => console.log(r.json()))
+    .catch(e => console.error(e))
+
+})
+
+// For Result Page
+function displaymatch(){
+    $.ajax({ url: "/api/friends", method: "GET"})
+     .then(
+            function(friend) {
+                var randmatch = Math.floor(Math.random() * friend.length)
+                $("#match").append(`<h2> Name: ${friend[randmatch].name} </h2>`)
+            }
+          )   
+}   
+displaymatch();
+
+
+
+
+
+
+   
 
 

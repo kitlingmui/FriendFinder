@@ -1,18 +1,22 @@
-// Get Route to /survey which should display the survey page
-// catch all route that leads to home.html which display the home page
+// include path package to get the correct path
 
+var path = require("path")
 
-const allfriends = require('../data/friends.js')
+//Routing to page
 
-module.exports = function (app) {
-    // get all added friends survey
-    app.get('/survey', (req, res) => {
-        res.json(allfriends.getfriend())
+module.exports = function (app) {  
+    // get home page link
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, "../public/index.html"))
     })
 
-    // add a new friend survey
-    app.post('/survey', (req, res) => {
-        allfriends.push(req.body)
-        res.sendStatus(200)
+    // get survey page link
+    app.get('/survey', (req, res) => {
+        res.sendFile(path.join(__dirname, "../public/survey.html"))
+    })
+
+    // get result page link
+    app.get('/result', (req, res) => {
+        res.sendFile(path.join(__dirname, "../public/result.html"))
     })
 }
